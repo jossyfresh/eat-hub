@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "734721240022",
+    "project_id": "eat-hub-1d3f3",
+    "storage_bucket": "eat-hub-1d3f3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734721240022:android:af718cdbb0434800f35277",
+        "android_client_info": {
+          "package_name": "com.example.eathub"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFPnmQ_GBcmg-JLtHytxDIXcIxZD6COno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:734721240022:android:4234baf03afdef69f35277",
+        "android_client_info": {
+          "package_name": "com.example.food_example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFPnmQ_GBcmg-JLtHytxDIXcIxZD6COno"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

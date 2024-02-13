@@ -42,7 +42,7 @@ class HomeSearchBar extends StatelessWidget {
               },
               decoration: InputDecoration(
                 border: InputBorder.none,
-                hintText: "Search any Restaurants",
+                hintText: "Search any Food",
                 hintStyle: TextStyle(
                   color: Colors.grey,
                 ),

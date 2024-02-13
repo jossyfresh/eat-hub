@@ -4,8 +4,16 @@ import 'package:eathub/screens/main_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:eathub/Providers/cart_provider.dart';
 import 'package:eathub/Providers/fav_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:eathub/firebase_options.dart';
+import 'package:eathub/screens/main_page.dart';
+import 'package:eathub/screens/register_screen.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MultiProvider(
       providers: [
@@ -31,7 +39,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kbackgroundColor,
         useMaterial3: true,
       ),
-      home: const MainScreen(),
+      home: const RegScreen(),
     );
   }
 }

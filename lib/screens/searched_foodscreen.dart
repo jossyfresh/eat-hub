@@ -23,7 +23,6 @@ class _SearchedScreenState extends State<SearchedScreen> {
   @override
   Widget build(BuildContext context) {
     final CartsProvider = Provider.of<CartProvider>(context);
-    final FavsProvider = Provider.of<FavProvider>(context);
     String searchQuery = CartsProvider.searchquery;
     List<Food> Searched = foods
         .where((element) => element.name.toLowerCase().contains(searchQuery))
