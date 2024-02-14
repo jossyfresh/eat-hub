@@ -1,6 +1,8 @@
 import 'package:eathub/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RegScreen extends StatefulWidget {
   const RegScreen({Key? key}) : super(key: key);
@@ -14,6 +16,22 @@ class _RegScreenState extends State<RegScreen> {
   final email = TextEditingController();
   final password = TextEditingController();
   final confirmpassword = TextEditingController();
+
+  Future<void> createUserDocument(UserCredential? userCredential) async {
+    if (userCredential != null && userCredential.user != null) {
+      await FirebaseFirestore.instance
+          .collection('users')
+          .doc(userCredential.user?.email)
+          .set({
+        'email': userCredential.user?.email,
+        'password': password.text,
+        'fullname': fullname.text,
+        'image': '',
+        'phone': '',
+        'address': '',
+      });
+    }
+  }
 
   void register() async {
     if (password.text != confirmpassword.text) {
@@ -32,8 +50,10 @@ class _RegScreenState extends State<RegScreen> {
           );
         });
     try {
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-          email: email.text, password: password.text);
+      UserCredential? userCredential = await FirebaseAuth.instance
+          .createUserWithEmailAndPassword(
+              email: email.text, password: password.text);
+
       Navigator.pop(context);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(

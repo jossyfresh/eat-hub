@@ -21,6 +21,74 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   @override
+  void placeorder() {
+    final cartProvider = Provider.of<CartProvider>(context, listen: false);
+    if (cartProvider.items.length > 0) {
+      cartProvider.clearCart();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.green.shade400, // Success green
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 39, // Slight elevation for depth
+
+        padding: EdgeInsets.all(20),
+        duration: const Duration(seconds: 2),
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Optionally include food image:
+            // Image.network(widget.food.image, width: 30, height: 30),
+            Flexible(
+              child: Text(
+                'Your Order has been Placed',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.check_circle,
+              color: Colors.white,
+              size: 24,
+            ),
+          ],
+        ),
+      ));
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        backgroundColor: Colors.red.shade400, // Success green
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+        elevation: 39, // Slight elevation for depth
+
+        padding: EdgeInsets.all(20),
+        duration: const Duration(seconds: 2),
+        content: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Optionally include food image:
+            // Image.network(widget.food.image, width: 30, height: 30),
+            Flexible(
+              child: Text(
+                'There is No Order Yet',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
+            ),
+            Icon(
+              Icons.check_circle,
+              color: Colors.white,
+              size: 24,
+            ),
+          ],
+        ),
+      ));
+    }
+  }
+
   Widget build(BuildContext context) {
     final cartProvider = Provider.of<CartProvider>(context);
     double price = cartProvider.getTotalPrice();
@@ -135,76 +203,7 @@ class _CartScreenState extends State<CartScreen> {
                       height: 50,
                       child: ElevatedButton(
                         onPressed: () {
-                          if (cartProvider.items.length > 0) {
-                            cartProvider.clearCart();
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              backgroundColor:
-                                  Colors.green.shade400, // Success green
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              elevation: 39, // Slight elevation for depth
-
-                              padding: EdgeInsets.all(20),
-                              duration: const Duration(seconds: 2),
-                              content: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Optionally include food image:
-                                  // Image.network(widget.food.image, width: 30, height: 30),
-                                  Flexible(
-                                    child: Text(
-                                      'Your Order has been Placed',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.white,
-                                    size: 24,
-                                  ),
-                                ],
-                              ),
-                            ));
-                          } else {
-                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                              backgroundColor:
-                                  Colors.red.shade400, // Success green
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10)),
-                              elevation: 39, // Slight elevation for depth
-
-                              padding: EdgeInsets.all(20),
-                              duration: const Duration(seconds: 2),
-                              content: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  // Optionally include food image:
-                                  // Image.network(widget.food.image, width: 30, height: 30),
-                                  Flexible(
-                                    child: Text(
-                                      'There is No Order Yet',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontWeight: FontWeight.bold,
-                                        fontSize: 20,
-                                      ),
-                                    ),
-                                  ),
-                                  Icon(
-                                    Icons.check_circle,
-                                    color: Colors.white,
-                                    size: 24,
-                                  ),
-                                ],
-                              ),
-                            ));
-                          }
+                          placeorder();
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Colors.green,

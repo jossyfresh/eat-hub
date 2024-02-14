@@ -1,3 +1,4 @@
+import 'package:eathub/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eathub/constants.dart';
 import 'package:eathub/screens/home_screen.dart';
@@ -18,6 +19,7 @@ class _MainScreenState extends State<MainScreen> {
     HomeScreen(),
     FavListScreen(),
     CartScreen(),
+    ProfileScreen(),
   ];
 
   @override
@@ -109,7 +111,28 @@ class _MainScreenState extends State<MainScreen> {
                 ],
               ),
             ),
+            GestureDetector(
+              onTap: () => setState(() {
+                currentTab = 3;
+              }),
+              child: Column(
+                children: [
+                  Icon(
+                    currentTab == 3 ? Icons.person : Icons.person_2_outlined,
+                    color: currentTab == 3 ? kprimaryColor : Colors.grey,
+                  ),
+                  Text(
+                    "Profile",
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: currentTab == 3 ? kprimaryColor : Colors.grey,
+                    ),
+                  ),
+                ],
+              ),
+            ),
           ],
+
         ),
       ),
       body: screens[currentTab],

@@ -1,3 +1,5 @@
+import 'package:eathub/Providers/user_provider.dart';
+import 'package:eathub/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:eathub/constants.dart';
 import 'package:eathub/screens/main_screen.dart';
@@ -19,6 +21,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => CartProvider()),
         ChangeNotifierProvider(create: (_) => FavProvider()),
+        ChangeNotifierProvider(create: (_) => UserProvider()),
       ],
       child: MyApp(),
     ),
@@ -39,7 +42,7 @@ class MyApp extends StatelessWidget {
         scaffoldBackgroundColor: kbackgroundColor,
         useMaterial3: true,
       ),
-      home: const RegScreen(),
+      home: MainPage(),
     );
   }
 }
